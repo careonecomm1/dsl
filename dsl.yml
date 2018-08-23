@@ -1,0 +1,33 @@
+database:
+  driverClass: org.mariadb.jdbc.Driver
+  user: dsldb
+  password: mm80
+  url: jdbc:mysql://127.0.0.1/dsldb
+server:
+  adminContextPath: /rest
+  applicationContextPath: /dsl
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8443
+logging:
+  appenders:
+  - type: console
+    timeZone: America/Argentina/Buenos_Aires
+  - type: file
+    timeZone: UTC
+    currentLogFilename: desper.log
+    archivedFileCount: 5
+  level: INFO
+  loggers:
+    "com.destinder": DEBUG
+    "org.hibernate.engine.internal": INFO
+    "org.reflections.Reflections": WARN
+    # Redirects SQL logs to a separate file
+    "org.hibernate.SQL": DEBUG
+  requestLog:
+    appenders:
+      - type: console
+        threshold: INFO
