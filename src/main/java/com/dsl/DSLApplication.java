@@ -2,6 +2,7 @@ package com.dsl;
 
 import com.dsl.config.DSLConfiguration;
 import com.dsl.di.Modules;
+import com.dsl.resources.ActionTypeResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.inject.Guice;
@@ -46,7 +47,7 @@ public class DSLApplication extends Application<DSLConfiguration> {
         Injector injector = Guice.createInjector(modules);
 
         // resources
-        environment.jersey().register(injector.getInstance(HotelResource.class));
+        environment.jersey().register(injector.getInstance(ActionTypeResource.class));
         // filters
         environment.getAdminContext().addFilter(new FilterHolder(newHealthFilter()), "/health", EnumSet.of(REQUEST));
     }

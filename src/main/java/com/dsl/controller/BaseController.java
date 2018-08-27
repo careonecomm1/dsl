@@ -4,6 +4,7 @@ import com.dsl.api.Identifiable;
 import com.dsl.core.Entity;
 import com.dsl.dao.Dao;
 import com.dsl.errors.EntityNotFoundException;
+import com.dsl.mapper.Mapper;
 
 import java.util.List;
 import java.util.Optional;

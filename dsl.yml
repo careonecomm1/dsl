@@ -2,7 +2,7 @@ database:
   driverClass: org.mariadb.jdbc.Driver
   user: dsldb
   password: mm80
-  url: jdbc:mysql://127.0.0.1/dsldb
+  url: jdbc:mysql://127.0.0.1:3306/dsldb
 server:
   adminContextPath: /rest
   applicationContextPath: /dsl

@@ -1,5 +1,7 @@
 package com.dsl.services;
 
+import com.dsl.core.ActionType;
+import com.dsl.service.ActionTypeService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,15 +10,15 @@ import static org.junit.Assert.assertThat;
 
 public class HotelServiceTest {
 
-    private HotelService hotelService;
+    private ActionTypeService actionTypeService;
 
     @Before
     public void setUp(){
-        hotelService = new HotelService();
+        actionTypeService = new ActionTypeService();
     }
 
     @Test
     public void loadHotels(){
-        assertThat(hotelService.getHotels().isEmpty(),is(false));
+        assertThat(actionTypeService.getActionTypes().isEmpty(),is(false));
     }
 }
