@@ -1,10 +1,10 @@
 package com.dsl;
 
-import com.dsl.config.DSLConfiguration;
 import com.dsl.di.Modules;
 import com.dsl.resources.ActionTypeResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.dropwizard.Application;
@@ -100,6 +100,7 @@ public class DSLApplication extends Application<DSLConfiguration> {
         mapper.disable(FAIL_ON_UNKNOWN_PROPERTIES);
         SimpleModule module = new SimpleModule();
         mapper.registerModule(module);
+        mapper.registerModule(new Jdk8Module());
     }
 
     private static Filter newHealthFilter() {

@@ -75,7 +75,6 @@ public class ConfigReader {
     public ConfigReader() {
 
         File credentials = getCustomerFileReader.apply("config/Credentials.json");
-        File config = getCustomerFileReader.apply("config/hotels-migration-config.json");
 
         JSONParser parser = new JSONParser();
         try (Reader is = new FileReader(credentials)) {
@@ -85,20 +84,10 @@ public class ConfigReader {
             setUser(readCredentialsField.apply(credentialsJson,"user"));
             setPassword(readCredentialsField.apply(credentialsJson,"password"));
 
-            setApiDespegarUrl(readApiField.apply(credentialsJson,"url"));
-            setApiKey(readApiField.apply(credentialsJson,"apiKey"));
-
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
 
-        try (Reader is = new FileReader(config)) {
-            JSONObject configJson = (JSONObject)parser.parse(is);
-            setChunk(readConfigField.apply(configJson,"chunk"));
-            setOffset(readConfigField.apply(configJson,"offset"));
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     public Function<String, File> getCustomerFileReader = filename -> {
@@ -111,11 +100,7 @@ public class ConfigReader {
      * Read the JSON entry and return userdb
      */
     private BiFunction<JSONObject,String, String> readCredentialsField = (c,p) -> (String) ((JSONObject) ((JSONObject)
-            c.get("dbConnections")).get("desperdb")).get(p);
-
-    private BiFunction<JSONObject,String, Long> readConfigField = (c,p) -> (Long) c.get(p);
-
-    private BiFunction<JSONObject,String, String> readApiField = (c,p) -> (String) ((JSONObject) c.get("api-despegar")).get(p);
+            c.get("dbConnections")).get("dsldb")).get(p);
 
     public String getUrldb() {
         return urldb;

@@ -1,3 +1,6 @@
+template: Hello, %s!
+defaultName: dsl
+
 database:
   driverClass: org.mariadb.jdbc.Driver
   user: dsldb
@@ -8,26 +11,26 @@ server:
   applicationContextPath: /dsl
   applicationConnectors:
     - type: http
-      port: 8080
+      port: 9798
   adminConnectors:
     - type: http
       port: 8443
+  requestLog:
+    appenders:
+    - type: console
+      threshold: INFO
 logging:
   appenders:
   - type: console
     timeZone: America/Argentina/Buenos_Aires
   - type: file
     timeZone: UTC
-    currentLogFilename: desper.log
+    currentLogFilename: dsl.log
     archivedFileCount: 5
+    archivedLogFilenamePattern: /var/log/myapplication-sql-%d.log.gz
   level: INFO
   loggers:
-    "com.destinder": DEBUG
+    "com.dsl": DEBUG
     "org.hibernate.engine.internal": INFO
     "org.reflections.Reflections": WARN
-    # Redirects SQL logs to a separate file
     "org.hibernate.SQL": DEBUG
-  requestLog:
-    appenders:
-      - type: console
-        threshold: INFO
